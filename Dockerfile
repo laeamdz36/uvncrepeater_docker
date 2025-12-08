@@ -1,24 +1,25 @@
 FROM debian:stable-slim
 
-# Instalar herramientas de compilación
 RUN apt-get update && apt-get install -y \
     build-essential \
-    gcc \
-    make \
     git \
-    libssl-dev \
-    zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Clonar el repositorio de UltraVNC
+# Clonar UltraVNC
 WORKDIR /app
 RUN git clone https://github.com/ultravnc/UltraVNC.git
 
-# Entrar al directorio repeater
 WORKDIR /app/UltraVNC/repeater
 
-# Compilar
-RUN make
+# Compilar manualmente el Repeater
+RUN gcc -o repeater \
+    repeater.c \
+    sockthread.c \
+    listen.c \
+    crc32.c \
+    common.c \
+    -lpthread
 
-# El binario compilado estará en /app/UltraVNC/repeater
+# Usa el binario por defecto
 CMD ["./repeater"]
+
