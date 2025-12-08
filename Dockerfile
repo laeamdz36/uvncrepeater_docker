@@ -5,21 +5,12 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Clonar UltraVNC
-WORKDIR /app
-RUN git clone https://github.com/ultravnc/UltraVNC.git
+WORKDIR /build
+RUN git clone https://github.com/adrianvintu/uvncrepeater.git
 
-WORKDIR /app/UltraVNC/repeater
+WORKDIR /build/uvncrepeater/src
+RUN make
 
-# Compilar manualmente el Repeater
-RUN gcc -o repeater \
-    repeater.c \
-    sockthread.c \
-    listen.c \
-    crc32.c \
-    common.c \
-    -lpthread
-
-# Usa el binario por defecto
 CMD ["./repeater"]
+
 
