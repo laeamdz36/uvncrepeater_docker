@@ -2,15 +2,18 @@ FROM debian:stable-slim
 
 RUN apt-get update && apt-get install -y \
     build-essential \
-    git \
+    g++ \
+    make \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /build
-RUN git clone https://github.com/adrianvintu/uvncrepeater.git
+# create the directory to extract the source code
+WORKDIR /usr/repeater
+COPY uvncrepeater.tar.gz .
+COPY uvncrepeater.ini /etc/uvncrepeater.ini
 
-WORKDIR /build/uvncrepeater/src
-RUN make
+RUN tar -xzvf uvncrepeater.tar.gz --strip-components=1 && \
+    make
 
-CMD ["./repeater"]
+CMD ["ls", "-la", "/usr/repeater"]
 
 
