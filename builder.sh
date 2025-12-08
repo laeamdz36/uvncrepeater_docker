@@ -1,19 +1,12 @@
 #!/bin/bash
+set -e
 
-set -e  # Si hay un error, detener el script
+echo "--- Descomprimiendo ---"
+# Asumimos que el tar.gz ya se copió al contenedor
+tar -xzvf uvncrepeater.tar.gz --strip-components=1
 
-echo "--- Iniciando Compilación del VNC Repeater ---"
-
-# 1. Entrar al directorio del código
-# cd /usr/src/uvncrepeater
-cd /usr/repeater
-
-# 2. Limpiar compilaciones previas (por si acaso) y compilar
+echo "--- Compilando ---"
 make clean
 make
 
-# 3. Mover el binario resultante a una carpeta del sistema
-# (Asumiendo que el output del make se llama 'uvncrepeater')
-cp uvncrepeater /usr/local/bin/
-
-echo "--- Compilación exitosa. Binario en /usr/local/bin/ ---"
+echo "--- Listo ---"
