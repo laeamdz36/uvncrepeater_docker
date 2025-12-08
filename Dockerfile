@@ -14,7 +14,7 @@ COPY uvncrepeater.ini /etc/uvncrepeater.ini
 RUN tar -xzvf uvncrepeater.tar.gz --strip-components=1 && \
     make && \
     # Mover el ejecutable a una carpeta limpia del sistema
-    mv uvncrepeater /usr/local/bin/uvncrepeater
+    mv repeater /usr/local/bin/repeater
 
 CMD ["ls", "-la", "/usr/repeater"]
 
