@@ -16,6 +16,6 @@ RUN tar -xzvf uvncrepeater.tar.gz --strip-components=1 && \
     # Mover el ejecutable a una carpeta limpia del sistema
     mv repeater /usr/local/bin/repeater
 
-CMD ["ls", "-la", "/usr/repeater"]
+CMD ["ls", "-la", "/usr/bin"]
 
 
