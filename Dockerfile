@@ -16,6 +16,12 @@ RUN tar -xzvf uvncrepeater.tar.gz --strip-components=1 && \
     # Mover el ejecutable a una carpeta limpia del sistema
     mv repeater /usr/local/bin/repeater
 
-CMD ["ls", "-la", "/usr/bin"]
+# Only for documentation
+EXPOSE 5500 5901
+
+RUN useradd -r uvncrep
+# To run the concainer and show the files in the direcotry specified
+CMD ["/usr/local/bin/uvncrepeater", "/etc/uvncrepeater.ini"]
+# CMD ["ls", "-la", "/usr/bin"]
 
 
