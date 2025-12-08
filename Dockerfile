@@ -17,7 +17,9 @@ COPY uvncrepeater.ini /etc/uvncrepeater.ini
 
 # 4. Dar permisos de ejecución y correr el script de compilación
 # RUN chmod +x /usr/repeater/builder.sh && /usr/repeater/builder.sh
-RUN chmod +x /usr/repeater/builder.sh && /usr/repeater/builder.sh
+# RUN dos2unix /usr/repeater/builder.sh && \
+#     chmod +x /usr/repeater/builder.sh && \
+#     /usr/repeater/builder.sh
 CMD ["ls", "-la", "/usr/"]
 # 5. Crear un usuario no-root por seguridad (Opcional pero recomendado)
 # RUN useradd -ms /bin/bash vncuser

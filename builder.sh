@@ -1,5 +1,4 @@
 #!/bin/bash
-# builder.sh
 
 set -e  # Si hay un error, detener el script
 
