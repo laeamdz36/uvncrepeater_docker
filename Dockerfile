@@ -20,7 +20,7 @@ COPY uvncrepeater.ini /etc/uvncrepeater.ini
 # RUN dos2unix /usr/repeater/builder.sh && \
 #     chmod +x /usr/repeater/builder.sh && \
 #     /usr/repeater/builder.sh
-CMD ["ls", "-la", "/usr/"]
+CMD ["ls", "-la", "/usr/repeater"]
 # 5. Crear un usuario no-root por seguridad (Opcional pero recomendado)
 # RUN useradd -ms /bin/bash vncuser
 # USER vncuser
