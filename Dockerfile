@@ -6,22 +6,24 @@ RUN apt-get update && apt-get install -y \
     make \
     && rm -rf /var/lib/apt/lists/*
 
-# create the directory to extract the source code
+# Create the directory to extract the source code
 WORKDIR /usr/repeater
 COPY uvncrepeater.tar.gz .
 COPY uvncrepeater.ini /etc/uvncrepeater.ini
 
 RUN tar -xzvf uvncrepeater.tar.gz --strip-components=1 && \
     make && \
-    # Mover el ejecutable a una carpeta limpia del sistema
+    # Move executable toa clean system location
     mv repeater /usr/local/bin/repeater
 
 # Only for documentation
-EXPOSE 5500 5901
+EXPOSE 5900 5901
 
+# Add a user to run the service repeater
+# The user is configured in uvncrepeater.ini
+# runasuser = uvncrep
 RUN useradd -r uvncrep
-# To run the concainer and show the files in the direcotry specified
+# to run the container
 CMD ["/usr/local/bin/repeater", "/etc/uvncrepeater.ini"]
-# CMD ["ls", "-la", "/usr/bin"]
 
 
