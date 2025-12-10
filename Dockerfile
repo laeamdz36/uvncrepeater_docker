@@ -21,7 +21,7 @@ EXPOSE 5500 5901
 
 RUN useradd -r uvncrep
 # To run the concainer and show the files in the direcotry specified
-CMD ["/usr/local/bin/uvncrepeater", "/etc/uvncrepeater.ini"]
+CMD ["/usr/local/bin/repeater", "/etc/uvncrepeater.ini"]
 # CMD ["ls", "-la", "/usr/bin"]
 
 
