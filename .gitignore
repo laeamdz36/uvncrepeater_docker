@@ -1,2 +1,4 @@
 repeater/
 test/
+novnc/
+*novnc/*
