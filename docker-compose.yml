@@ -1,0 +1,27 @@
+services:
+
+  # Contenedor 1: Nginx (El servidor web y reverse proxy)
+  nginx-proxy:
+    build:
+      # TODO: need to define the final context to proxy nginx image build
+      # in order to copy artifacts like configs and static files for novnc
+      context: .
+      dockerfile: nginx.dockerfile
+    ports:
+      # Expone el puerto 8080 de tu host, que redirige al 80 de Nginx
+      - "8080:80"
+    depends_on:
+      - websockify
+
+  # Container websockify, the transalator from websocket to TCP
+  # Here we can modify and cutomize the websockify code in order to
+  # get different approaches and functionalities, it is written in python.
+  websockify:
+    build: 
+      context: ./websockify
+      dockerfile: websockify.dockerfile
+    env_file:
+      - ./websockify/websockify.env
+    # Este comando instala websockify y lo ejecuta
+    # Escucha en el puerto interno 6081
+    # Y redirige a la IP de Windows definida en las variables
